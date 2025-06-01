@@ -17,7 +17,7 @@ from os import path
 from sys import platform, argv
 from pystray import Icon
 from pystray import MenuItem
-from PIL import Image
+from PIL import Image, ImageTk
 from threading import Thread
 from json import load
 from time import time
@@ -69,7 +69,7 @@ class MainApp(Window):
         # Main Buttons (Start record, stop record, start playback, stop playback)
 
         # Play Button
-        self.playImg = PhotoImage(file=resource_path(path.join("assets", "button", "play.png")))
+        self.playImg = ImageTk.PhotoImage(Image.open(resource_path(path.join("assets", "button", "play.png"))))
 
         self.center_frame = Frame(self)
         self.center_frame.pack(expand=True, fill=BOTH)
@@ -87,12 +87,12 @@ class MainApp(Window):
         self.playBtn.pack(side=LEFT, padx=50)
 
         # Record Button
-        self.recordImg = PhotoImage(file=resource_path(path.join("assets", "button", "record.png")))
+        self.recordImg = ImageTk.PhotoImage(Image.open(resource_path(path.join("assets", "button", "record.png"))))
         self.recordBtn = Button(self.center_frame, image=self.recordImg, command=self.macro.start_record)
         self.recordBtn.pack(side=RIGHT, padx=50)
 
         # Stop Button
-        self.stopImg = PhotoImage(file=resource_path(path.join("assets", "button", "stop.png")))
+        self.stopImg = ImageTk.PhotoImage(Image.open(resource_path(path.join("assets", "button", "stop.png"))))
 
         record_management = RecordFileManagement(self, self.menu)
 
