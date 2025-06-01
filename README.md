@@ -37,5 +37,5 @@ pip3 install -r requirements.txt
 ## Running the app
 
 ```bash
-cd src && python3 main.py
+./run.sh
 ```
