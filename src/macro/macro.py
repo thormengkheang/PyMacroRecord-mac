@@ -36,6 +36,7 @@ class Macro:
         self.mouse_listener = None
         self.time = None
         self.event_delta_time=0
+        self.showEventsOnStatusBar = False  # Default value to prevent AttributeError
 
         self.keyboard_listener = keyboard.Listener(
                 on_press=self.__on_press, on_release=self.__on_release
@@ -354,9 +355,12 @@ class Macro:
         self.macro_events["events"].append(e)
 
     def __get_event_delta_time(self):
-        timenow=time()
-        self.event_delta_time = timenow - self.time
-        self.time=timenow
+        timenow = time()
+        if self.time is None:
+            self.event_delta_time = 0
+        else:
+            self.event_delta_time = timenow - self.time
+        self.time = timenow
 
     def __on_move(self, x, y):
         self.__get_event_delta_time()
